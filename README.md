@@ -1,7 +1,7 @@
-# Micro-analyze-app
+# Micro-api-db
 
-Micro servicio que que lee un archivo csv y lo suber al servido para posterior analisis
-y expone un api rest para loading csv, validate csv y retrasmitir a otro servidor.
+Micro-api-db es un programa backend para exponer un api rest con las mejores practicas
+en desarrollo
 
 ## Comenzando 🚀
 
@@ -78,7 +78,7 @@ npm i @hapi/boom
 Para descargar el proyecto a su computadora y ejecutar, clone el proyecto, instale las dependencias y correr el proyecto con el comando npm run dev.
 
 ```
-git clone git@gitlab.com:nodejs-code/backend/micro-analyze-app.git
+git clone git@gitlab.com:nodejs-code/backend/micro-api-db.git
 cd micro-csv-loader
 npm install
 
@@ -198,17 +198,17 @@ router.delete('/:id', (req, res) => {
 
 ## Wiki 📖
 
-Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://gitlab.com/nodejs-code/backend/micro-analyze-app/-/wikis/home)
+Puedes encontrar mucho más de cómo utilizar este proyecto en nuestra [Wiki](https://gitlab.com/nodejs-code/backend/micro-api-db/-/wikis/home)
 
 ## Versionado 📌
 
-Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://gitlab.com/nodejs-code/backend/micro-analyze-app/-/tags).
+Usamos [SemVer](http://semver.org/) para el versionado. Para todas las versiones disponibles, mira los [tags en este repositorio](https://gitlab.com/nodejs-code/backend/micro-api-db/-/tags).
 
 ## Autores ✒️
 
 - **Fabio Rojas** - Fullstack Development - [hackchan](https://gitlab.com/hackchan)
 
-También puedes mirar la lista de todos los [contribuyentes](https://gitlab.com/nodejs-code/backend/micro-analyze-app/-/graphs/master) quíenes han participado en este proyecto.
+También puedes mirar la lista de todos los [contribuyentes](https://gitlab.com/nodejs-code/backend/micro-api-db/-/graphs/master) quíenes han participado en este proyecto.
 
 ## Licencia 📄
 
