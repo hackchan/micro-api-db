@@ -22,6 +22,7 @@ class UserService {
     try {
       const rta = UserDB.findAll()
       return rta
+      //return this.usuarios
     } catch (error) {
       throw error
     }
