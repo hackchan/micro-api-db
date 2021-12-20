@@ -1,5 +1,6 @@
 import faker from 'faker'
 import boom from '@hapi/boom'
+
 class UserService {
   constructor() {
     this.usuarios = []
@@ -11,7 +12,8 @@ class UserService {
         id: faker.datatype.uuid(),
         name: `${faker.name.firstName()} ${faker.name.lastName()}`,
         avatar: faker.image.imageUrl(),
-        email: faker.internet.email()
+        email: faker.internet.email(),
+        password: faker.internet.password()
       })
     }
   }
@@ -34,11 +36,49 @@ class UserService {
     }
   }
 
-  async create() {}
+  async create(user) {
+    try {
+      if (!user) {
+        throw boom.notImplemented('se requiere datos de usuario para su creacion')
+      }
+      const id = faker.datatype.uuid()
+      const userCreate = {
+        id,
+        ...user
+      }
+      this.usuarios.push(userCreate)
+      return { message: 'usuario creado con exito' }
+    } catch (error) {
+      throw error
+    }
+  }
 
-  async update() {}
+  async update(id, changes) {
+    const index = this.usuarios.findIndex((user) => user.id === id)
+    if (index === -1) {
+      throw boom.notFound('usario no encontrado')
+    }
+    const user = this.usuarios[index]
+    const userUpdate = {
+      ...user,
+      ...changes
+    }
+    this.usuarios[index] = userUpdate
+    return userUpdate
+  }
 
-  async delete() {}
+  async delete(id) {
+    try {
+      const index = this.usuarios.findIndex((user) => user.id === id)
+      if (index === -1) {
+        throw boom.notFound('usario no encontrado')
+      }
+      this.usuarios.splice(index, 1)
+      return { message: `usuario con id ${id} eliminado con exito` }
+    } catch (error) {
+      throw error
+    }
+  }
 }
 
 export default UserService
