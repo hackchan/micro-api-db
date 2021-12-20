@@ -27,6 +27,7 @@
     "sequelize-cli": "^6.3.0"
   },
   "dependencies": {
+    "@hapi/boom": "^9.1.4",
     "express": "^4.17.2",
     "morgan": "^1.10.0",
     "mssql": "^7.3.0",

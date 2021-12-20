@@ -10,3 +10,13 @@ export const listarUsuarios = async (req, res, next) => {
     next(error)
   }
 }
+
+export const listarUsuarioById = async (req, res, next) => {
+  try {
+    const { id } = req.params
+    const usuario = await serviceUser.findOne(id)
+    res.json(usuario)
+  } catch (error) {
+    next(error)
+  }
+}

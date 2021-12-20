@@ -1,4 +1,5 @@
 import faker from 'faker'
+import boom from '@hapi/boom'
 class UserService {
   constructor() {
     this.usuarios = []
@@ -21,7 +22,17 @@ class UserService {
       throw error
     }
   }
-  async findOne() {}
+  async findOne(id) {
+    try {
+      const index = this.usuarios.findIndex((user) => user.id === id)
+      if (index === -1) {
+        throw boom.notFound('Usuario no encontrado')
+      }
+      return this.usuarios[index]
+    } catch (error) {
+      throw error
+    }
+  }
 
   async create() {}
 
