@@ -1,6 +1,9 @@
 import app from './app'
 
-const port = app.get('port')
+async function main() {
+  const port = app.get('port')
+  await app.listen(port)
+  console.log(`server running en port ${port}`)
+}
 
-app.listen(port)
-console.log(`server running en port ${port}`)
+main()
