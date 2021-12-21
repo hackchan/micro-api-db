@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../sequelize'
-import Departamento from './Departamento'
+//import Deparmets from './Departamento'
 const Satelital = sequelize.define(
   'satelital',
   {
@@ -19,7 +19,8 @@ const Satelital = sequelize.define(
     timestamps: false
   }
 )
-Satelital.hasMany(Departamento, { foreignKey: 'idSatelital', sourceKey: 'id' })
-Departamento.belongsTo(Satelital, { foreignKey: 'idSatelital', sourceKey: 'id' })
+//Satelital.hasMany(Deparmets, { foreignKey: 'idSatelital', sourceKey: 'id' })
+//Deparmets.belongsTo(Satelital, { foreignKey: 'idSatelital', sourceKey: 'id' })
+
 
 export default Satelital

@@ -1,10 +1,10 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../sequelize'
 
-const Deparmets = sequelize.define(
-  'departamentos',
+const Department = sequelize.define('departamentos',
   {
     id: {
+      field:'id_depart',
       allowNull: false,
       type: DataTypes.INTEGER,
       primaryKey: true
@@ -13,11 +13,6 @@ const Deparmets = sequelize.define(
     nombre: {
       allowNull: false,
       type: DataTypes.STRING
-    },
-
-    idSatelital: {
-      allowNull: false,
-      type: DataTypes.INTEGER
     },
 
     longitud: {
@@ -29,6 +24,7 @@ const Deparmets = sequelize.define(
       type: DataTypes.REAL
     }
   },
-  { timestamps: false }
+  { timestamps: false}
 )
-export default Deparmets
+
+export default Department
