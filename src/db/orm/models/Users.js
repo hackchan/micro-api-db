@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize'
+/*import { DataTypes } from 'sequelize'
 import sequelize from '../sequelize'
 
 const Users = sequelize.define('users', {
@@ -31,4 +31,4 @@ const Users = sequelize.define('users', {
   timestamps:false
 })
 
-export default Users
+export default Users*/

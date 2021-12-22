@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize'
+/*import { DataTypes } from 'sequelize'
 import sequelize from '../sequelize'
 
 const Department = sequelize.define(
@@ -28,4 +28,4 @@ const Department = sequelize.define(
   { timestamps: false }
 )
 
-export default Department
+export default Department*/

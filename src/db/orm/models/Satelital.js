@@ -1,4 +1,4 @@
-import { DataTypes } from 'sequelize'
+/*import { DataTypes } from 'sequelize'
 import sequelize from '../sequelize'
 //import Deparmets from './Departamento'
 const Satelital = sequelize.define(
@@ -23,4 +23,4 @@ const Satelital = sequelize.define(
 //Deparmets.belongsTo(Satelital, { foreignKey: 'idSatelital', sourceKey: 'id' })
 
 
-export default Satelital
+export default Satelital*/
