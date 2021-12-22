@@ -1,5 +1,6 @@
 import { Sequelize } from 'sequelize'
 import config from '../../config'
+import setupModel from './models'
 
 const USER = encodeURIComponent(config.db.user)
 const PASSWORD = encodeURIComponent(config.db.password)
@@ -16,4 +17,6 @@ const sequelize = new Sequelize(URI, {
   }
 })
 
+setupModel(sequelize)
+sequelize.sync()
 export default sequelize

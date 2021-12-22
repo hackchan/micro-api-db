@@ -1,23 +1,77 @@
-import DataBase from '../../../db/orm/DataBase'
+//import sequelize from '../../../db/orm/sequelize'
+import boom from '@hapi/boom'
+//import DataBase from '../../../db/orm/DataBase'
+import db from '../../../db/orm/sequelize'
 class DeparmentService {
   constructor() {}
 
-  async getModel() {
-    const { DepartmentsModel } = await DataBase.getModels()
-    this.departmentModel = DepartmentsModel
-  }
+  // async getModel() {
+  //   this.db = await DataBase.getModels()
+  // }
 
-  static async getInstance() {
-    if (!DeparmentService._departmentsServiceInstance) {
-      DeparmentService._departmentsServiceInstance = new DeparmentService()
-      await DeparmentService._departmentsServiceInstance.getModel()
+  // static async getInstance() {
+  //   if (!DeparmentService._departmentsServiceInstance) {
+  //     DeparmentService._departmentsServiceInstance = new DeparmentService()
+  //     await DeparmentService._departmentsServiceInstance.getModel()
+  //   }
+  //   return DeparmentService._departmentsServiceInstance
+  // }
+
+  async create(data) {
+    try {
+      //const db = await DataBase.getDB()
+      const model = db.models.department
+      const newUser = await model.create(data)
+      return newUser
+    } catch (error) {
+      throw error
     }
-    return DeparmentService._departmentsServiceInstance
   }
-
   async findAll() {
     try {
-      return this.departmentModel.findAll()
+      //const db = await DataBase.getDB()
+      const model = db.models.department
+      return await model.findAll({ order: [['id', 'ASC']] })
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async findOne(id) {
+    try {
+      //const db = await DataBase.getDB()
+      const model = db.models.department
+      const department = await model.findByPk(id)
+      if (!department) {
+        throw boom.notFound(`Departamento con id ${id} no encontrado!!!`)
+      }
+      return department
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async update(id, changes) {
+    try {
+      //const db = await DataBase.getDB()
+      const model = db.models.department
+      const deparment = await this.findOne(id)
+      const rta = deparment.update(changes)
+      return rta
+    } catch (error) {
+      throw error
+    }
+  }
+
+  async delete(id) {
+    try {
+      //const db = await DataBase.getDB()
+      const model = db.models.department
+      const deparment = await this.findOne(id)
+      deparment.destroy()
+      return {
+        message: `el departmento ${deparment.nombre} fue eliminado con exito`
+      }
     } catch (error) {
       throw error
     }

@@ -1,8 +1,9 @@
 import { Sequelize } from 'sequelize'
 import config from '../../config'
-import DepartmentsModel from './models/Deparments'
+//import DepartmentsModel from './models/Deparments'
+import setupModel from './models'
 class DataBase {
-  static async getModels() {
+  static async getDB() {
     if (!DataBase._instance) {
       const USER = encodeURIComponent(config.db.user)
       const PASSWORD = encodeURIComponent(config.db.password)
@@ -19,17 +20,18 @@ class DataBase {
       })
 
       //define modelos
-      DepartmentsModel.setup(DataBase._instance)
+      //DepartmentsModel.setup(DataBase._instance)
 
       //define Relaciones
 
       //
+      setupModel(DataBase._instance)
       await DataBase._instance.sync()
     }
-
-    return {
-      DepartmentsModel
-    }
+    return DataBase._instance
+    // return {
+    //   DepartmentsModel
+    // }
   }
 }
 export default DataBase

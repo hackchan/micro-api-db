@@ -1,38 +1,45 @@
 import { DataTypes, Model } from 'sequelize'
 
-class Department extends Model {
-  static setup(sequelize) {
-    
-    Department.init(
-      {
-        id: {
-          type: DataTypes.INTEGER,
-          field: 'id_depart',
-          allowNull: false,
-          primaryKey: true,
-          autoIncrement: true
-        },
-        nombre: {
-          allowNull: false,
-          type: DataTypes.STRING
-        },
-        longitud: {
-          allowNull: true,
-          type: DataTypes.REAL
-        },
-        latitud: {
-          allowNull: true,
-          type: DataTypes.REAL
-        }
-      },
-      {
-        sequelize,
-        modelName: 'departamentos',
-        //tableName:'',
-        timestamps: false
-      }
-    )
+export const tableName = 'departamentos'
+
+export const DepartmentSchema = {
+  id: {
+    type: DataTypes.INTEGER,
+    field: 'id_depart',
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  nombre: {
+    allowNull: false,
+    type: DataTypes.STRING
+  },
+  longitud: {
+    allowNull: true,
+    type: DataTypes.REAL
+  },
+  latitud: {
+    allowNull: true,
+    type: DataTypes.REAL
   }
 }
 
-export default Department
+export class Department extends Model {
+  static associate() {}
+  static config(sequelize) {
+    return {
+      sequelize,
+      modelName: 'department',
+      tableName: 'departamentos',
+      timestamps: false
+    }
+  }
+  //   static setup(sequelize) {
+  //     Department.init(DepartmentSchema, {
+  //       sequelize,
+  //       modelName: 'departamentos',
+  //       tableName,
+  //       timestamps: false
+  //     })
+  //   }
+}

@@ -1,10 +1,11 @@
 import { DataTypes } from 'sequelize'
 import sequelize from '../sequelize'
 
-const Department = sequelize.define('departamentos',
+const Department = sequelize.define(
+  'go',
   {
     id: {
-      field:'id_depart',
+      field: 'id_depart',
       allowNull: false,
       type: DataTypes.INTEGER,
       primaryKey: true
@@ -24,7 +25,7 @@ const Department = sequelize.define('departamentos',
       type: DataTypes.REAL
     }
   },
-  { timestamps: false}
+  { timestamps: false }
 )
 
 export default Department
