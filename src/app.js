@@ -2,7 +2,7 @@ import express, { json, urlencoded } from 'express'
 import routers from './routers'
 import cors from 'cors'
 import morgan from 'morgan'
-import { boomErroHandler, errorHandler } from './middlewares/errors'
+import { boomErroHandler, errorHandler, ormError } from './middlewares/errors'
 import config from './config'
 const app = express()
 
@@ -22,5 +22,6 @@ routers(app)
 //midlewares error
 //app.use(logError)
 app.use(boomErroHandler)
+app.use(ormError)
 app.use(errorHandler)
 export default app

@@ -5,6 +5,7 @@ import setupModel from './models'
 const USER = encodeURIComponent(config.db.user)
 const PASSWORD = encodeURIComponent(config.db.password)
 const URI = `${config.db.dialect}://${USER}:${PASSWORD}@${config.db.server}:${config.db.port}/${config.db.dbName}`
+console.log('URI', URI)
 
 const sequelize = new Sequelize(URI, {
   dialect: config.db.dialect,
@@ -17,6 +18,15 @@ const sequelize = new Sequelize(URI, {
   }
 })
 
-setupModel(sequelize)
-sequelize.sync()
+sequelize
+  .authenticate()
+  .then(() => {
+    setupModel(sequelize)
+    sequelize.sync()
+    console.log('Connection has been established successfully.')
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err)
+  })
+
 export default sequelize
