@@ -21,6 +21,10 @@ export const DepartmentSchema = {
   latitud: {
     allowNull: true,
     type: DataTypes.REAL
+  },
+  satelital_id: {
+    allowNull: true,
+    type: DataTypes.INTEGER
   }
 }
 

@@ -6,6 +6,6 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.drop(tableName)
+    await queryInterface.dropTable(tableName)
   }
 }

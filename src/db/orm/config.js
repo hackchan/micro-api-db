@@ -1,20 +1,16 @@
-//const conf = require('../../config')
-//const config = conf.default
+import config from '../../config'
 
-NODE_ENV = 'development'
-NODE_PORT = 3000
-
-const USER = encodeURIComponent('nico')
-const PASSWORD = encodeURIComponent('admin123')
-const URI = `postgres://${USER}:${PASSWORD}@localhost:5432/my_store`
-
+const USER = encodeURIComponent(config.db.user)
+const PASSWORD = encodeURIComponent(config.db.password)
+const URI = `${config.db.dialect}://${USER}:${PASSWORD}@${config.db.server}:${config.db.port}/${config.db.dbName}`
+console.log(URI)
 module.exports = {
-  development: {
+  developmnet: {
     url: URI,
-    dialect: 'postgres'
+    dialect: config.db.dialect
   },
   production: {
     url: URI,
-    dialect: 'postgres'
+    dialect: config.db.dialect
   }
 }

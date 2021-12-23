@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 
-export default {
+const config = {
   dev: process.env.NODE_ENV === 'developmnet' ? true : false,
   port: process.env.NODE_PORT || 3000,
   db: {
@@ -14,3 +14,5 @@ export default {
     dialect: process.env.DB_DIALECT
   }
 }
+
+export default config
