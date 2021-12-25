@@ -1,8 +1,8 @@
-import { DataTypes, Model } from 'sequelize'
+const { DataTypes, Model } = require('sequelize')
 
-export const tableName = 'departamentos'
+const tableName = 'departamentos'
 
-export const DepartmentSchema = {
+const DepartmentSchema = {
   id: {
     type: DataTypes.INTEGER,
     field: 'id_depart',
@@ -22,13 +22,14 @@ export const DepartmentSchema = {
     allowNull: true,
     type: DataTypes.REAL
   },
+
   satelital_id: {
     allowNull: true,
     type: DataTypes.INTEGER
   }
 }
 
-export class Department extends Model {
+class Department extends Model {
   static associate() {}
   static config(sequelize) {
     return {
@@ -47,3 +48,5 @@ export class Department extends Model {
   //     })
   //   }
 }
+
+module.exports = { tableName, DepartmentSchema, Department }

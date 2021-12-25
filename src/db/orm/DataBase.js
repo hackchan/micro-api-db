@@ -1,5 +1,5 @@
 import { Sequelize } from 'sequelize'
-import config from '../../config'
+const config = require('../../config')
 //import DepartmentsModel from './models/Deparments'
 import setupModel from './models'
 class DataBase {

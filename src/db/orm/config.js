@@ -1,11 +1,11 @@
-import config from '../../config'
+const config = require('../../config')
 
 const USER = encodeURIComponent(config.db.user)
 const PASSWORD = encodeURIComponent(config.db.password)
 const URI = `${config.db.dialect}://${USER}:${PASSWORD}@${config.db.server}:${config.db.port}/${config.db.dbName}`
-console.log(URI)
+
 module.exports = {
-  developmnet: {
+  development: {
     url: URI,
     dialect: config.db.dialect
   },
