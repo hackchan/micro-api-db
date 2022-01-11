@@ -19,8 +19,9 @@ class DeparmentService {
 
   async create(data) {
     try {
+      db.models.d
       //const db = await DataBase.getDB()
-      const model = db.models.department
+      const model = db.models.deparment
       const newUser = await model.create(data)
       return newUser
     } catch (error) {
@@ -54,7 +55,7 @@ class DeparmentService {
   async update(id, changes) {
     try {
       //const db = await DataBase.getDB()
-      const model = db.models.department
+      //const model = db.models.department
       const deparment = await this.findOne(id)
       const rta = deparment.update(changes)
       return rta
@@ -66,7 +67,7 @@ class DeparmentService {
   async delete(id) {
     try {
       //const db = await DataBase.getDB()
-      const model = db.models.department
+      //const model = db.models.department
       const deparment = await this.findOne(id)
       deparment.destroy()
       return {

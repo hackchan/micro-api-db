@@ -1,11 +1,10 @@
-const { DataTypes, Model } = require('sequelize')
+import { DataTypes, Model } from 'sequelize'
+export const tableName = 'department'
 
-const tableName = 'departamentos'
-
-const DepartmentSchema = {
+export const DepartmentSchema = {
   id: {
     type: DataTypes.INTEGER,
-    field: 'id_depart',
+    field: 'depart_id',
     allowNull: false,
     primaryKey: true,
     autoIncrement: true
@@ -22,20 +21,34 @@ const DepartmentSchema = {
     allowNull: true,
     type: DataTypes.REAL
   },
-
-  satelital_id: {
+  activo: {
     allowNull: true,
-    type: DataTypes.INTEGER
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  },
+  satelitalId: {
+    field: 'satelital_id',
+    allowNull: true,
+    type: DataTypes.INTEGER,
+    references: {
+      model: 'satelital',
+      key: 'satelital_id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   }
 }
 
-class Department extends Model {
-  static associate() {}
+export class Department extends Model {
+  static associate(models) {
+    this.belongsTo(models.satelital, { foreignKey: 'satelital_id' })
+    this.hasMany(models.entidad, { foreignKey: 'depart_id' })
+  }
   static config(sequelize) {
     return {
       sequelize,
       modelName: 'department',
-      tableName: 'departamentos',
+      tableName,
       timestamps: false
     }
   }
@@ -48,5 +61,3 @@ class Department extends Model {
   //     })
   //   }
 }
-
-module.exports = { tableName, DepartmentSchema, Department }

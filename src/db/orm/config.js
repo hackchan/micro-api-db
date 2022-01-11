@@ -1,4 +1,4 @@
-const config = require('../../config')
+import config from '../../config'
 
 const USER = encodeURIComponent(config.db.user)
 const PASSWORD = encodeURIComponent(config.db.password)

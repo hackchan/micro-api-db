@@ -2,7 +2,7 @@ import faker from 'faker'
 import boom from '@hapi/boom'
 //import ResourceService from '../../../db/driver/ResourceService'
 //const UserDB = new ResourceService('users')
-import Users from '../../../db/orm/models/Users'
+//import Users from '../../../db/orm/models/Users'
 class UserService {
   constructor() {
     this.usuarios = []
@@ -21,13 +21,11 @@ class UserService {
   }
   async findAll() {
     try {
-       const rta = await Users.findAll()
-
+      //const rta = await Users.findAll()
       //const rta = UserDB.findAll()
       //return rta
-      
       //return this.usuarios
-      return rta
+      //return rta
     } catch (error) {
       throw error
     }

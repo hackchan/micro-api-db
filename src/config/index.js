@@ -1,8 +1,8 @@
-const dotenv = require('dotenv')
+import dotenv from 'dotenv'
 
 dotenv.config()
 
-module.exports = {
+const config = {
   dev: process.env.NODE_ENV === 'developmnet' ? true : false,
   port: process.env.NODE_PORT || 3000,
   db: {
@@ -14,3 +14,5 @@ module.exports = {
     dialect: process.env.DB_DIALECT
   }
 }
+
+export default config

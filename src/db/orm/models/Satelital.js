@@ -1,26 +1,44 @@
-/*import { DataTypes } from 'sequelize'
-import sequelize from '../sequelize'
-//import Deparmets from './Departamento'
-const Satelital = sequelize.define(
-  'satelital',
-  {
-    id: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      primaryKey: true
-    },
+import { Model, DataTypes } from 'sequelize'
 
-    nombre: {
-      allowNull: false,
-      type: DataTypes.STRING
-    }
+export const tableName = 'satelital'
+
+export const SatelitalSchema = {
+  id: {
+    type: DataTypes.INTEGER,
+    field: 'satelital_id',
+    allowNull: false,
+    primaryKey: true,
+    autoIncrement: true
   },
-  {
-    timestamps: false
+  nombre: {
+    allowNull: false,
+    type: DataTypes.STRING
+  },
+  activo: {
+    allowNull: false,
+    type: DataTypes.BOOLEAN,
+    defaultValue: false
+  },
+
+  createdAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'created_at',
+    defaultValue: DataTypes.NOW
   }
-)
-//Satelital.hasMany(Deparmets, { foreignKey: 'idSatelital', sourceKey: 'id' })
-//Deparmets.belongsTo(Satelital, { foreignKey: 'idSatelital', sourceKey: 'id' })
+}
 
+export class Satelital extends Model {
+  static associate(models) {
+    this.hasMany(models.department, { foreignKey: 'satelital_id' })
+  }
 
-export default Satelital*/
+  static config(sequelize) {
+    return {
+      sequelize,
+      modelName: 'satelital',
+      tableName,
+      timestamps: false
+    }
+  }
+}
