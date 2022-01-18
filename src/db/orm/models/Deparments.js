@@ -28,7 +28,7 @@ export const DepartmentSchema = {
   },
   satelitalId: {
     field: 'satelital_id',
-    allowNull: true,
+    allowNull: false,
     type: DataTypes.INTEGER,
     references: {
       model: 'satelital',

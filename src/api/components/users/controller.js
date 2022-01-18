@@ -16,7 +16,6 @@ export const listarUsuarioById = async (req, res, next) => {
     const { id } = req.params
     const usuario = await serviceUser.findOne(id)
     success(req, res, usuario)
-    res.json(usuario)
   } catch (error) {
     next(error)
   }

@@ -21,7 +21,7 @@ routers(app)
 
 //midlewares error
 //app.use(logError)
+app.use(ormError)
 app.use(boomErroHandler)
-//app.use(ormError)
 app.use(errorHandler)
 export default app

@@ -2,6 +2,7 @@
 const { SatelitalSchema, tableName: tableNameSatelital } = require('../models/Satelital')
 const { DepartmentSchema, tableName } = require('../models/Deparments')
 const { tipoEntidadSchema, tableName: tentidad } = require('../models/TipoEntidad')
+const { userSchema, tableName: tableNameUsers } = require('../models/Users')
 const { entidadSchema, tableName: tableNameEntidad } = require('../models/Entidad')
 const { reporteSchema, tableName: tableNameReporte } = require('../models/Reporte')
 const { circularSchema, tableName: tableNameCircular } = require('../models/Circular')
@@ -17,6 +18,7 @@ module.exports = {
     await queryInterface.createTable(tableNameSatelital, SatelitalSchema)
     await queryInterface.createTable(tableName, DepartmentSchema)
     await queryInterface.createTable(tentidad, tipoEntidadSchema)
+    await queryInterface.createTable(tableNameUsers, userSchema)
     await queryInterface.createTable(tableNameEntidad, entidadSchema)
     await queryInterface.createTable(tableNameCircular, circularSchema)
     await queryInterface.createTable(tableNameReporte, reporteSchema)
@@ -29,6 +31,7 @@ module.exports = {
   down: async (queryInterface) => {
     await queryInterface.dropTable(tableName)
     await queryInterface.dropTable(tableNameSatelital)
+    await queryInterface.dropTable(tableNameUsers, userSchema)
     await queryInterface.dropTable(tentidad, tipoEntidadSchema)
     await queryInterface.dropTable(tableNameEntidad, entidadSchema)
     await queryInterface.dropTable(tableNameCircular, circularSchema)

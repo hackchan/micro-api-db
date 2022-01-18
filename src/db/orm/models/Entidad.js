@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-
+import { tableName as tableNameUsers } from './Users'
 export const tableName = 'entidad'
 
 export const entidadSchema = {
@@ -23,7 +23,7 @@ export const entidadSchema = {
 
   tipoEntidad: {
     field: 'id_tipo_entidad',
-    allowNull: true,
+    allowNull: false,
     type: DataTypes.INTEGER,
     references: {
       model: 'tipoentidades',
@@ -35,11 +35,24 @@ export const entidadSchema = {
 
   departId: {
     field: 'depart_id',
-    allowNull: true,
+    allowNull: false,
     type: DataTypes.INTEGER,
+    unique: true,
     references: {
       model: 'department',
       key: 'depart_id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
+  },
+
+  userId: {
+    field: 'users_id',
+    allowNull: false,
+    type: DataTypes.INTEGER,
+    references: {
+      model: tableNameUsers,
+      key: 'users_id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
@@ -48,8 +61,12 @@ export const entidadSchema = {
 
 export class Entidad extends Model {
   static associate(models) {
-    this.belongsTo(models.tipoentidades, { foreignKey: 'id_tipo_entidad' })
-    this.belongsTo(models.department, { foreignKey: 'depart_id' })
+    this.belongsTo(models.users, { foreignKey: 'users_id', as: 'user' })
+    this.belongsTo(models.tipoentidades, {
+      foreignKey: 'id_tipo_entidad',
+      as: 'tipo'
+    })
+    this.belongsTo(models.department, { foreignKey: 'depart_id', as: 'depart' })
   }
 
   static config(sequelize) {

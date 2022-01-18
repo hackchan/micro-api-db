@@ -12,12 +12,14 @@ import {
   EjecucionPresupuestalIngresos,
   ejecucionPresupuestalIngresoSchema
 } from './EjecucionPresupuestalIngresos'
+import { Users, userSchema } from './Users'
 /**Aqui vamos a inicializar todos los modelos */
 
 function setupModel(sequelize) {
   Satelital.init(SatelitalSchema, Satelital.config(sequelize))
   Department.init(DepartmentSchema, Department.config(sequelize))
   Entidad.init(entidadSchema, Entidad.config(sequelize))
+  Users.init(userSchema, Users.config(sequelize))
   TipoEntidad.init(tipoEntidadSchema, TipoEntidad.config(sequelize))
   Circular.init(circularSchema, Circular.config(sequelize))
   Reporte.init(reporteSchema, Reporte.config(sequelize))
@@ -38,6 +40,7 @@ function setupModel(sequelize) {
 
   //
   Diccionario.associate(sequelize.models)
+  Users.associate(sequelize.models)
 }
 
 export default setupModel
