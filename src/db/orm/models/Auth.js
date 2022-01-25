@@ -1,18 +1,19 @@
 import { DataTypes, Model } from 'sequelize'
 
-export const tableName = 'users'
+export const tableName = 'auths'
 
-export const userSchema = {
+export const authSchema = {
   id: {
     type: DataTypes.INTEGER,
-    field: 'users_id',
+    field: 'auth_id',
     allowNull: false,
     primaryKey: true,
     autoIncrement: true
   },
 
-  user: {
+  username: {
     allowNull: false,
+    unique: true,
     type: DataTypes.STRING
   },
 
@@ -32,15 +33,16 @@ export const userSchema = {
   }
 }
 
-export class Users extends Model {
+export class Auth extends Model {
   static associate(models) {
-    this.hasOne(models.entidad, { foreignKey: 'users_id', as: 'entidad' })
+    this.hasOne(models.User, { foreignKey: 'auth_id', as: 'user' })
   }
 
   static config(sequelize) {
     return {
+      freezeTableName: true,
       sequelize,
-      modelName: 'users',
+      modelName: 'Auth',
       tableName,
       timestamps: false
     }

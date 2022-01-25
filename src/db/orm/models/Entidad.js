@@ -1,5 +1,5 @@
 import { DataTypes, Model } from 'sequelize'
-import { tableName as tableNameUsers } from './Users'
+import { tableName as tableNameAuth } from './Auth'
 export const tableName = 'entidad'
 
 export const entidadSchema = {
@@ -46,13 +46,14 @@ export const entidadSchema = {
     onDelete: 'SET NULL'
   },
 
-  userId: {
-    field: 'users_id',
+  authId: {
+    field: 'auth_id',
     allowNull: false,
+    unique: true,
     type: DataTypes.INTEGER,
     references: {
-      model: tableNameUsers,
-      key: 'users_id'
+      model: tableNameAuth,
+      key: 'auth_id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
@@ -61,7 +62,7 @@ export const entidadSchema = {
 
 export class Entidad extends Model {
   static associate(models) {
-    this.belongsTo(models.users, { foreignKey: 'users_id', as: 'user' })
+    this.belongsTo(models.auth, { foreignKey: 'auth_id', as: 'auth' })
     this.belongsTo(models.tipoentidades, {
       foreignKey: 'id_tipo_entidad',
       as: 'tipo'

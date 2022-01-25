@@ -4,15 +4,13 @@ class UserService {
   constructor() {}
 
   async create(data) {
-    const newUser = await db.models.users.create(data)
+    const newUser = await db.models.User.create(data)
     return newUser
   }
 
   async findAll() {
     try {
-      const list = await db.models.users.findAll({
-        include: ['entidad']
-      })
+      const list = await db.models.User.findAll()
       return list
     } catch (error) {
       throw error
@@ -21,7 +19,7 @@ class UserService {
 
   async findOne(id) {
     try {
-      const user = await db.models.users.findByPk(id)
+      const user = await db.models.User.findByPk(id)
       if (!user) {
         throw boom.notFound('user not found')
       }
