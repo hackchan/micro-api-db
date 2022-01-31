@@ -4,13 +4,15 @@ class UserService {
   constructor() {}
 
   async create(data) {
-    const newUser = await db.models.User.create(data)
+    const newUser = await db.models.User.create(data, { include: ['auth'] })
     return newUser
   }
 
   async findAll() {
     try {
-      const list = await db.models.User.findAll()
+      const list = await db.models.User.findAll({
+        include: ['auth']
+      })
       return list
     } catch (error) {
       throw error

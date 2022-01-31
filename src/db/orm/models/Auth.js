@@ -4,11 +4,10 @@ export const tableName = 'auths'
 
 export const authSchema = {
   id: {
-    type: DataTypes.INTEGER,
-    field: 'auth_id',
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
+    type: DataTypes.INTEGER
   },
 
   username: {
@@ -25,17 +24,12 @@ export const authSchema = {
   role: {
     allowNull: false,
     type: DataTypes.STRING
-  },
-
-  created_at: {
-    allowNull: false,
-    type: DataTypes.DATE
   }
 }
 
 export class Auth extends Model {
   static associate(models) {
-    this.hasOne(models.User, { foreignKey: 'auth_id', as: 'user' })
+    this.hasOne(models.User, { foreignKey: 'authId', as: 'user' })
   }
 
   static config(sequelize) {

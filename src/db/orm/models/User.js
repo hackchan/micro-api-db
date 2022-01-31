@@ -4,11 +4,10 @@ export const tableName = 'users'
 
 export const userSchema = {
   id: {
-    type: DataTypes.INTEGER,
-    field: 'user_id',
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
+    type: DataTypes.INTEGER
   },
 
   name: {
@@ -32,19 +31,19 @@ export const userSchema = {
     type: DataTypes.STRING
   },
 
-  created_at: {
+  createdAt: {
     allowNull: false,
     type: DataTypes.DATE
   },
 
   authId: {
     field: 'auth_id',
-    allowNull: true,
+    allowNull: false,
     unique: true,
     type: DataTypes.INTEGER,
     references: {
       model: tableNameAuth,
-      key: 'auth_id'
+      key: 'id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
@@ -53,7 +52,7 @@ export const userSchema = {
 
 export class User extends Model {
   static associate(models) {
-    this.belongsTo(models.Auth, { foreignKey: 'auth_id', as: 'auth' })
+    this.belongsTo(models.Auth, { as: 'auth' })
   }
 
   static config(sequelize) {

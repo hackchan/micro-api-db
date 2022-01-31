@@ -10,7 +10,9 @@ class AuthService {
 
   async findAll() {
     try {
-      const list = await db.models.Auth.findAll()
+      const list = await db.models.Auth.findAll({
+        include: ['user']
+      })
       return list
     } catch (error) {
       throw error
