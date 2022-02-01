@@ -1,27 +1,29 @@
 import { DataTypes, Model } from 'sequelize'
-export const tableName = 'department'
-
+export const tableName = 'departments'
+import { tableName as tableNameSatelital } from './Satelital'
 export const DepartmentSchema = {
   id: {
-    type: DataTypes.INTEGER,
-    field: 'depart_id',
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
+    type: DataTypes.INTEGER
   },
-  nombre: {
+  name: {
     allowNull: false,
+    unique: true,
     type: DataTypes.STRING
   },
-  longitud: {
+
+  latitude: {
     allowNull: true,
     type: DataTypes.REAL
   },
-  latitud: {
+
+  longitude: {
     allowNull: true,
     type: DataTypes.REAL
   },
-  activo: {
+  active: {
     allowNull: true,
     type: DataTypes.BOOLEAN,
     defaultValue: false
@@ -31,8 +33,8 @@ export const DepartmentSchema = {
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: 'satelital',
-      key: 'satelital_id'
+      model: tableNameSatelital,
+      key: 'id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
@@ -41,13 +43,13 @@ export const DepartmentSchema = {
 
 export class Department extends Model {
   static associate(models) {
-    this.belongsTo(models.satelital, { foreignKey: 'satelital_id' })
-    this.hasMany(models.entidad, { foreignKey: 'depart_id' })
+    this.belongsTo(models.Satelital, { as: 'satelital' })
+    //this.hasMany(models.entidad, { foreignKey: 'depart_id' })
   }
   static config(sequelize) {
     return {
       sequelize,
-      modelName: 'department',
+      modelName: 'Department',
       tableName,
       timestamps: false
     }

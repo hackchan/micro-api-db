@@ -1,32 +1,33 @@
 import { DataTypes, Model } from 'sequelize'
 import { tableName as tableNameAuth } from './Auth'
-export const tableName = 'entidad'
+export const tableName = 'entidades'
 
 export const entidadSchema = {
   id: {
-    type: DataTypes.INTEGER,
-    field: 'id_entidad',
     allowNull: false,
     primaryKey: true,
-    autoIncrement: true
+    autoIncrement: true,
+    type: DataTypes.INTEGER
   },
 
   nombre: {
     allowNull: false,
+    unique: true,
     type: DataTypes.STRING
   },
 
   db: {
     allowNull: false,
+    unique: true,
     type: DataTypes.STRING
   },
 
   tipoEntidad: {
-    field: 'id_tipo_entidad',
+    field: 'tipo_entidad_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: 'tipoentidades',
+      model: ' ',
       key: 'id_tipo_entidad'
     },
     onUpdate: 'CASCADE',

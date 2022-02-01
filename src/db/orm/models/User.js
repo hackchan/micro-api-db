@@ -31,6 +31,11 @@ export const userSchema = {
     type: DataTypes.STRING
   },
 
+  image:{
+    allowNull:true,
+    type: DataTypes.STRING
+  },
+
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE

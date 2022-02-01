@@ -1,20 +1,20 @@
 import { Model, DataTypes } from 'sequelize'
 
-export const tableName = 'satelital'
+export const tableName = 'satelitales'
 
 export const SatelitalSchema = {
   id: {
-    type: DataTypes.INTEGER,
-    field: 'satelital_id',
     allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
-    autoIncrement: true
+    type: DataTypes.INTEGER
   },
-  nombre: {
+  name: {
     allowNull: false,
+    unique: true,
     type: DataTypes.STRING
   },
-  activo: {
+  active: {
     allowNull: false,
     type: DataTypes.BOOLEAN,
     defaultValue: false
@@ -30,13 +30,13 @@ export const SatelitalSchema = {
 
 export class Satelital extends Model {
   static associate(models) {
-    this.hasMany(models.department, { foreignKey: 'satelital_id' })
+    this.hasMany(models.Department, { foreignKey: 'satelitalId', as: 'departmets' })
   }
 
   static config(sequelize) {
     return {
       sequelize,
-      modelName: 'satelital',
+      modelName: 'Satelital',
       tableName,
       timestamps: false
     }

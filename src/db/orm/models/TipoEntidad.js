@@ -5,14 +5,14 @@ export const tableName = 'tipoentidades'
 export const tipoEntidadSchema = {
   id: {
     type: DataTypes.INTEGER,
-    field: 'id_tipo_entidad',
     allowNull: false,
     primaryKey: true,
     autoIncrement: true
   },
 
-  nombre: {
+  name: {
     allowNull: false,
+    unique: true,
     type: DataTypes.STRING
   }
 }
@@ -24,7 +24,7 @@ export class TipoEntidad extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      modelName: 'tipoentidades',
+      modelName: 'Tipoentidad',
       tableName,
       timestamps: false
     }
