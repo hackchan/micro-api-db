@@ -19,7 +19,7 @@ export const tipoEntidadSchema = {
 
 export class TipoEntidad extends Model {
   static associate(models) {
-    this.hasMany(models.entidad, { foreignKey: 'id_tipo_entidad' })
+    this.hasMany(models.Entidad, { as: 'entidad' })
   }
   static config(sequelize) {
     return {

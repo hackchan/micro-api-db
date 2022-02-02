@@ -31,8 +31,8 @@ export const userSchema = {
     type: DataTypes.STRING
   },
 
-  image:{
-    allowNull:true,
+  image: {
+    allowNull: true,
     type: DataTypes.STRING
   },
 
@@ -58,6 +58,7 @@ export const userSchema = {
 export class User extends Model {
   static associate(models) {
     this.belongsTo(models.Auth, { as: 'auth' })
+    this.hasOne(models.Satelital, { foreignKey: 'userId' })
   }
 
   static config(sequelize) {

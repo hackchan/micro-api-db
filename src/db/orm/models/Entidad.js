@@ -63,12 +63,9 @@ export const entidadSchema = {
 
 export class Entidad extends Model {
   static associate(models) {
-    this.belongsTo(models.auth, { foreignKey: 'auth_id', as: 'auth' })
-    this.belongsTo(models.tipoentidades, {
-      foreignKey: 'id_tipo_entidad',
-      as: 'tipo'
-    })
-    this.belongsTo(models.department, { foreignKey: 'depart_id', as: 'depart' })
+    this.belongsTo(models.Auth, { as: 'auth' })
+    this.belongsTo(models.Tipoentidad, { as: 'tipoentidad' })
+    this.belongsTo(models.Department, { as: 'department' })
   }
 
   static config(sequelize) {

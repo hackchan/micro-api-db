@@ -21,8 +21,8 @@ function setupModel(sequelize) {
   User.init(userSchema, User.config(sequelize))
   Satelital.init(SatelitalSchema, Satelital.config(sequelize))
   Department.init(DepartmentSchema, Department.config(sequelize))
-  // Entidad.init(entidadSchema, Entidad.config(sequelize))
-  // TipoEntidad.init(tipoEntidadSchema, TipoEntidad.config(sequelize))
+  TipoEntidad.init(tipoEntidadSchema, TipoEntidad.config(sequelize))
+  Entidad.init(entidadSchema, Entidad.config(sequelize))
   // Circular.init(circularSchema, Circular.config(sequelize))
   // Reporte.init(reporteSchema, Reporte.config(sequelize))
   // Diccionario.init(diccionarioSchema, Diccionario.config(sequelize))
@@ -32,18 +32,18 @@ function setupModel(sequelize) {
   //   ejecucionPresupuestalIngresoSchema,
   //   EjecucionPresupuestalIngresos.config(sequelize)
   // )
-  //associations
-  //Department.associate(sequelize.models)
-  //Entidad.associate(sequelize.models)
-  //TipoEntidad.associate(sequelize.models)
+
+  //associations************************************************************************
+
   //Informado.associate(sequelize.models)
   //EjecucionPresupuestalIngresos.associate(sequelize.models)
-  //
   //Diccionario.associate(sequelize.models)
   Auth.associate(sequelize.models)
   User.associate(sequelize.models)
   Satelital.associate(sequelize.models)
   Department.associate(sequelize.models)
+  TipoEntidad.associate(sequelize.models)
+  Entidad.associate(sequelize.models)
 }
 
 export default setupModel
