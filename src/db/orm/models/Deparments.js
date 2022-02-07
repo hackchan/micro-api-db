@@ -44,7 +44,7 @@ export const DepartmentSchema = {
 export class Department extends Model {
   static associate(models) {
     this.belongsTo(models.Satelital, { as: 'satelital' })
-    this.hasMany(models.Entidad, { foreignKey: 'departId' })
+    //this.hasMany(models.Entidad, { foreignKey: 'departId' })
   }
   static config(sequelize) {
     return {

@@ -1,5 +1,7 @@
 import { DataTypes, Model } from 'sequelize'
 import { tableName as tableNameAuth } from './Auth'
+import { tableName as tableNameDepartments } from './Deparments'
+import { tableName as tableNameTipoEntidad } from './TipoEntidad'
 export const tableName = 'entidades'
 
 export const entidadSchema = {
@@ -10,7 +12,7 @@ export const entidadSchema = {
     type: DataTypes.INTEGER
   },
 
-  nombre: {
+  name: {
     allowNull: false,
     unique: true,
     type: DataTypes.STRING
@@ -27,21 +29,21 @@ export const entidadSchema = {
     allowNull: false,
     type: DataTypes.INTEGER,
     references: {
-      model: ' ',
-      key: 'id_tipo_entidad'
+      model: tableNameTipoEntidad,
+      key: 'id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
   },
 
-  departId: {
+  departId: { 
     field: 'depart_id',
     allowNull: false,
     type: DataTypes.INTEGER,
     unique: true,
     references: {
-      model: 'department',
-      key: 'depart_id'
+      model: tableNameDepartments,
+      key: 'id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
@@ -54,7 +56,7 @@ export const entidadSchema = {
     type: DataTypes.INTEGER,
     references: {
       model: tableNameAuth,
-      key: 'auth_id'
+      key: 'id'
     },
     onUpdate: 'CASCADE',
     onDelete: 'SET NULL'
@@ -71,7 +73,7 @@ export class Entidad extends Model {
   static config(sequelize) {
     return {
       sequelize,
-      modelName: 'entidad',
+      modelName: 'Entidad',
       tableName,
       timestamps: false
     }

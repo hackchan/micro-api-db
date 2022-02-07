@@ -21,7 +21,7 @@ class DeparmentService {
     try {
       //db.models.d
       //const db = await DataBase.getDB()
-      const model = db.models.deparment
+      const model = db.models.Department
       const newUser = await model.create(data)
       return newUser
     } catch (error) {
@@ -31,7 +31,7 @@ class DeparmentService {
   async findAll() {
     try {
       //const db = await DataBase.getDB()
-      const model = await db.models.department
+      const model = await db.models.Department
       return await model.findAll({ order: [['id', 'ASC']] })
     } catch (error) {
       throw error
