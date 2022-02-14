@@ -10,7 +10,7 @@ class Satelital {
 
   async findall() {
     try {
-      const lista = await db.models.Satelital.findAll({ include: ['user'] })
+      const lista = await db.models.Satelital.findAll()
       return lista
     } catch (error) {
       throw error
@@ -19,7 +19,7 @@ class Satelital {
 
   async findOne(id) {
     try {
-      const satelital = await db.models.Satelital.findByPk(id, { include: ['user'] })
+      const satelital = await db.models.Satelital.findByPk(id)
       if (!satelital) {
         throw boom.notFound('satelital not found!!')
       }

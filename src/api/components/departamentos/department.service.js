@@ -32,7 +32,7 @@ class DeparmentService {
     try {
       //const db = await DataBase.getDB()
       const model = await db.models.Department
-      return await model.findAll({ order: [['id', 'ASC']] })
+      return await model.findAll({ include: ['user'], order: [['id', 'ASC']] })
     } catch (error) {
       throw error
     }
@@ -41,8 +41,8 @@ class DeparmentService {
   async findOne(id) {
     try {
       //const db = await DataBase.getDB()
-      const model = db.models.department
-      const department = await model.findByPk(id)
+      const model = db.models.Department
+      const department = await model.findByPk(id, { include: ['user'] })
       if (!department) {
         throw boom.notFound(`Departamento con id ${id} no encontrado!!!`)
       }
@@ -58,6 +58,7 @@ class DeparmentService {
       //const model = db.models.department
       const deparment = await this.findOne(id)
       const rta = deparment.update(changes)
+      delete rta.user
       return rta
     } catch (error) {
       throw error
@@ -71,7 +72,7 @@ class DeparmentService {
       const deparment = await this.findOne(id)
       deparment.destroy()
       return {
-        message: `el departmento ${deparment.nombre} fue eliminado con exito`
+        message: `el departmento ${deparment.name} fue eliminado con exito`
       }
     } catch (error) {
       throw error
